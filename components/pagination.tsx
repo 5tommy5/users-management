@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Paginator(props:any){
+export const Paginator = (props:{total:number, setCurrentPage}) => {
     const total:number = props.total;
     const [current, setCurrent] = useState(1);
 

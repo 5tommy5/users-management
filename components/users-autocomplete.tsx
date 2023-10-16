@@ -1,14 +1,12 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Autosuggest from "react-autosuggest";
 
 
-function Autocomplete(props:any) {
+export const Autocomplete = (props:{redirect}) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const router = useRouter();
 
-  const onChange = (event, { newValue }) => {
+  const onChange = ({}, { newValue }) => {
     setValue(newValue);
   };
   const onSuggestionsFetchRequested = async ({ value }) => {
@@ -41,7 +39,7 @@ function Autocomplete(props:any) {
 
   const getSuggestionValue = (suggestion) => suggestion.firstName;
 
-  const onSuggestionSelected =(event, val:any) => {
+  const onSuggestionSelected =({}, val) => {
     props.redirect(val.suggestion.id);
   }
 
@@ -70,4 +68,3 @@ function Autocomplete(props:any) {
     </div>
   );
 }
-export default Autocomplete;

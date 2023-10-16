@@ -1,7 +1,7 @@
-import User from "@/models/user";
+import {User} from "@/models/user";
 
-export default function UserCard(props : any){
-    function redirectToUserPage(){
+export const UserCard = (props : {user:User, redirect}) => {
+    const redirectToUserPage = () => {
         props.redirect(props.user.id);
     }
     return (
@@ -10,7 +10,7 @@ export default function UserCard(props : any){
         hover:border-0 hover:cursor-pointer hover:shadow-xl hover:shadow-slate-100">
             <img src={props.user.image}/>
             <div className="flex justify-center mt-2">
-                {props.user.firstName + ' ' + props.user.lastName}
+                {props.user.firstName} {props.user.lastName}
             </div>
         </div>
     )

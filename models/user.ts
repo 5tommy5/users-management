@@ -1,15 +1,11 @@
-export default class User {
-    public id: number;
-    public firstName: string;
-    public lastName: string;
-    public maidenName:string;
-    public age:number;
-    public gender: Gender;
-    public image: string;
-
-}
-
-export enum Gender{
-    male = "male", 
-    female = "female"
+export type User = {
+    id: number;
+    firstName: string;
+    lastName: string;
+    maidenName:string;
+    age:number;
+    gender: 'male'|'female';
+    image: string;
+    email: string;
+    phone: string;
 }

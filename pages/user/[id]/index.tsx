@@ -1,6 +1,25 @@
+import { User } from "@/models/user";
 import { useRouter } from "next/router"
 
-export default function UserPage(props : any){
+export const getServerSideProps = async (context) => {
+  const id = context.query.hasOwnProperty('id') ? parseInt(context.query.id, 10) : 1;
+  const res = await fetch('https://dummyjson.com/users/' + id);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      user: data
+    }
+  }
+}
+
+export const UserPage = (props : {user:User}) =>{
     const router = useRouter();
 
     return (
@@ -22,20 +41,4 @@ export default function UserPage(props : any){
     )
 }
 
-export async function getServerSideProps(context) {
-    const id = context.query.hasOwnProperty('id') ? parseInt(context.query.id, 10) : 1;
-    const res = await fetch('https://dummyjson.com/users/' + id);
-    const data = await res.json();
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: {
-        user: data
-      }
-    }
-  }
+export default UserPage;

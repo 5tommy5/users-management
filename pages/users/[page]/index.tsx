@@ -1,10 +1,10 @@
-import Paginator from "@/components/pagination";
-import UserCard from "@/components/user-card";
-import Autocomplete from "@/components/users-autocomplete";
+import {Paginator} from "@/components/pagination";
+import {UserCard} from "@/components/user-card";
+import {Autocomplete} from "@/components/users-autocomplete";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Users(){
+export const Users = () =>{
     const router = useRouter();
 
     const [users, setUsers] = useState([]);
@@ -43,7 +43,7 @@ export default function Users(){
 
     console.log( params);
 
-    const content = users?.length > 0 ? users.map( (user) => ( <UserCard redirect={toUserPage} key={user.id} user={user}/> )) : <div>Loading...</div>
+    const content = users?.length ? users.map( (user) => ( <UserCard redirect={toUserPage} key={user.id} user={user}/> )) : <div>Loading...</div>
 
     return (
         <div className="grid xl:grid-cols-5 2xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-2 gap-4 p-8">
@@ -57,3 +57,5 @@ export default function Users(){
         </div>
     );
 }
+
+export default Users;
